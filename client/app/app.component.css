@@ -26,3 +26,24 @@ nav a:hover {
 nav a.router-link-active {
     color: #039be5;
 }
+.container.main {
+    min-height: 200px;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 1200px){
+    .container.main {
+        width: 100%; 
+    }
+}
+@media (min-width: 992px) {
+    .container.main {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .container.main {
+        width: 100%;
+    }
+}

@@ -1,0 +1,35 @@
+#mainNav{
+    margin-bottom: 100px
+}
+
+.navbar-default {
+    background-color: #3a2c2c;
+    border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #e0d8d8;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: darkgrey;
+}
+
+.navbar-default .navbar-brand {
+    color: #e0d8d8;
+}
+
+.navbar-header button {
+    color: aliceblue;
+}
+
+.navbar-header a img {
+    height: 45px;
+    width: 45px;
+    margin-top: -12px;
+    float: left;
+}
+
+.navbar-header a span {
+    float: left;
+}

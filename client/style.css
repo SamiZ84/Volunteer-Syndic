@@ -1,0 +1,59 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+background: #f7f3ef;
+}
+body {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container.main {
+    min-height: 200px;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 1200px){
+    .container.main {
+        width: 100%; 
+    }
+}
+@media (min-width: 992px) {
+    .container.main {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .container.main {
+        width: 100%;
+    }
+}
+
+.container.main.content{
+    min-height: 400px;
+    padding: 80px 100px;
+    margin: 0;
+}
+
+@media (min-width: 1200px){
+    .container.main {
+        width: 100%; 
+        padding: 10px 20px;
+        margin: 0;
+    }
+}
+@media (min-width: 992px) {
+    .container.main {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 0;
+    }
+}
+@media (min-width: 768px) {
+    .container.main {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+}
