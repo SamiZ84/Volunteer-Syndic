@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NglModule } from 'ng-lightning/ng-lightning';
+//import { ClarityModule } from 'clarity-angular';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -29,9 +30,11 @@ import { HeroService } from './services/hero.service';
 @NgModule({
   imports: [
     BrowserModule,
+    //ClarityModule,
     HttpModule,
     FormsModule,
-    routing, NglModule.forRoot()
+    routing,
+    NglModule.forRoot()
   ],
   declarations: [
     AppComponent,

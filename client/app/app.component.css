@@ -47,3 +47,11 @@ nav a.router-link-active {
         width: 100%;
     }
 }
+
+header, .header {
+    white-space: normal;
+}
+
+h1, h2 {
+    color: wheat;
+}
