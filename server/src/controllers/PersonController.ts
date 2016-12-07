@@ -3,17 +3,17 @@
  */
 
 import express = require("express");
-import ResidentBusiness = require("./../app/business/ResidentBusiness");
+import PersonBusiness = require("./../app/business/PersonBusiness");
 import IBaseController = require("./BaseController");
-import IResident = require("./../app/model/interfaces/IResident");
+import IPerson = require("./../app/model/interfaces/IPerson");
 
-class ResidentController implements IBaseController <ResidentBusiness> {
+class PersonController implements IBaseController <PersonBusiness> {
 
     create(req: express.Request, res: express.Response): void {
         try {
 
-            var model: IResident = <IResident>req.body;
-            var myBusiness = new ResidentBusiness();
+            var model: IPerson = <IPerson>req.body;
+            var myBusiness = new PersonBusiness();
             myBusiness.create(model, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
@@ -26,9 +26,9 @@ class ResidentController implements IBaseController <ResidentBusiness> {
     }
     update(req: express.Request, res: express.Response): void {
         try {
-            var model: IResident = <IResident>req.body;
+            var model: IPerson = <IPerson>req.body;
             var _id: string = req.params._id;
-            var myBusiness = new ResidentBusiness();
+            var myBusiness = new PersonBusiness();
             myBusiness.update(_id, model, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
@@ -44,7 +44,7 @@ class ResidentController implements IBaseController <ResidentBusiness> {
         try {
 
             var _id: string = req.params._id;
-            var myBusiness = new ResidentBusiness();
+            var myBusiness = new PersonBusiness();
             myBusiness.delete(_id, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send({"success": "success"});
@@ -59,7 +59,7 @@ class ResidentController implements IBaseController <ResidentBusiness> {
     retrieve(req: express.Request, res: express.Response): void {
         try {
 
-            var myBusiness = new ResidentBusiness();
+            var myBusiness = new PersonBusiness();
             myBusiness.retrieve((error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send(result);
@@ -75,7 +75,7 @@ class ResidentController implements IBaseController <ResidentBusiness> {
         try {
 
             var _id: string = req.params._id;
-            var myBusiness = new ResidentBusiness();
+            var myBusiness = new PersonBusiness();
             myBusiness.findById(_id, (error, result) => {
                 if(error) res.send({"error": "error"});
                 else res.send(result);
@@ -88,4 +88,4 @@ class ResidentController implements IBaseController <ResidentBusiness> {
         }
     }
 }
-export = ResidentController;
+export = PersonController;

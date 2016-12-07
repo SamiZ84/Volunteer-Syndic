@@ -2,13 +2,13 @@
  * Created by Moiz.Kachwala on 15-06-2016.
  */
 
-import IResident = require('./interfaces/IResident');
+import IPerson = require('./interfaces/IPerson');
 
-class Resident {
+class Person {
 
-    private _model: IResident;
+    private _model: IPerson;
 
-    constructor(model: IResident) {
+    constructor(model: IPerson) {
         this._model = model;
     }
 
@@ -33,5 +33,5 @@ class Resident {
     }
 }
 
-Object.seal(Resident);
-export =  Resident;
+Object.seal(Person);
+export =  Person;

@@ -11,11 +11,10 @@ class AppartmentController implements IBaseController <AppartmentBusiness> {
 
     create(req: express.Request, res: express.Response): void {
         try {
-
             var model: IAppartment = <IAppartment>req.body;
             var myBusiness = new AppartmentBusiness();
             myBusiness.create(model, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"errorCreate": error});
                 else res.send({"success": "success"});
             });
         }
@@ -37,12 +36,10 @@ class AppartmentController implements IBaseController <AppartmentBusiness> {
         catch (e)  {
             console.log(e);
             res.send({"error": "error in your request"});
-
         }
     }
     delete(req: express.Request, res: express.Response): void {
         try {
-
             var _id: string = req.params._id;
             var myBusiness = new AppartmentBusiness();
             myBusiness.delete(_id, (error, result) => {
@@ -58,7 +55,6 @@ class AppartmentController implements IBaseController <AppartmentBusiness> {
     }
     retrieve(req: express.Request, res: express.Response): void {
         try {
-
             var myBusiness = new AppartmentBusiness();
             myBusiness.retrieve((error, result) => {
                 if(error) res.send({"error": "error"});

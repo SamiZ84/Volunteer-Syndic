@@ -3,12 +3,12 @@
  */
 
 import DataAccess = require('../DataAccess');
-import IResident = require("./../../model/interfaces/IResident");
+import IPerson = require("./../../model/interfaces/IPerson");
 
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
-class ResidentSchema {
+class PersonSchema {
 
     static get schema () {
         var schema =  mongoose.Schema({
@@ -37,5 +37,5 @@ class ResidentSchema {
         return schema;
     }
 }
-var schema = mongooseConnection.model<IResident>("Resident", ResidentSchema.schema);
+var schema = mongooseConnection.model<IPerson>("Persons", PersonSchema.schema);
 export = schema;""

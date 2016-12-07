@@ -3,6 +3,7 @@
  */
 
 import IAppartment = require('./interfaces/IAppartment');
+import IPerson = require('./interfaces/IPerson');
 
 class Appartment {
 
@@ -24,12 +25,16 @@ class Appartment {
         return this._model.floor;
     }
     
-    get residentId (): string {
-        return this._model.residentId;
+    get resident (): IPerson {
+        return this._model.resident;
     }
 
-    get ownerId (): string {
-        return this._model.ownerId;
+    get owner (): IPerson {
+        return this._model.owner;
+    }
+
+    get residentIsOwner (): boolean {
+        return this._model.residentIsOwner;
     }
 }
 

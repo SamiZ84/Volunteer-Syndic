@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NglModule } from 'ng-lightning/ng-lightning';
-//import { ClarityModule } from 'clarity-angular';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -24,15 +23,16 @@ import { AppartmentsComponent }  from './components/appartments/appartments.comp
 import { AppartmentDetailComponent }  from './components/appartmentDetail/appartmentDetail.component';
 import { FundsComponent }  from './components/funds/funds.component';
 
-
 import { HeroService } from './services/hero.service';
+import { PersonService } from './services/person.service';
+import { AppartmentService } from './services/appartment.service';
 
 @NgModule({
   imports: [
     BrowserModule,
-    //ClarityModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     routing,
     NglModule.forRoot()
   ],
@@ -55,7 +55,9 @@ import { HeroService } from './services/hero.service';
     FundsComponent
   ],
   providers: [
-    HeroService
+    HeroService,
+    PersonService,
+    AppartmentService
   ],
   bootstrap: [AppComponent]
 })

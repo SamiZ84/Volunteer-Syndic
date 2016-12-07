@@ -5,6 +5,8 @@
 import DataAccess = require('../DataAccess');
 import IAppartment = require("./../../model/interfaces/IAppartment");
 
+import PersonSchema = require("./PersonSchema");
+
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
@@ -21,21 +23,19 @@ class AppartmentSchema {
                 required: true
             },
             floor: {
-                type: Number,
-                required: true
-            },
-            ownerId: {
                 type: String,
                 required: true
             },
-            residentId: {
-                type: String,
-                required: true
-            }
+            residentIsOwner: {
+                type: Boolean,
+                required: false
+            },
+            owner: PersonSchema.schema,
+            resident: PersonSchema.schema
         });
 
         return schema;
     }
 }
-var schema = mongooseConnection.model<IAppartment>("Appartment", AppartmentSchema.schema);
+var schema = mongooseConnection.model<IAppartment>("Appartments", AppartmentSchema.schema);
 export = schema;""

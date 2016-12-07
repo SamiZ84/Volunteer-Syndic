@@ -3,13 +3,15 @@
  */
 
 import mongoose = require("mongoose");
+import IPerson = require('./IPerson');
 
 interface IAppartment extends mongoose.Document {
     num: number;
     block: string;
     floor: number;
-    ownerId: string;
-    residentId: string;
+    owner: IPerson;
+    resident: IPerson;
+    residentIsOwner: boolean;
 }
 
 export = IAppartment;

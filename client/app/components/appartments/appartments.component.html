@@ -1,5 +1,48 @@
 <my-menu></my-menu>
 
 <div class="container main content">
-    appartments page
+    <h2>Appartments</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error" *ngIf="error">{{error}}</div>
+            <div class="pull-right">
+                <button class="btn btn-success" (click)="addAppartment()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Add New Appartment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Object Id</th>
+                        <th>Bloc</th>
+                        <th>Numero</th>
+                        <th>Floor</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let appartment of appartments" [class.active]="appartment === selectedAppartment">
+                        <td>{{appartment._id}}</td>
+                        <td>{{appartment.block}}</td>
+                        <td>{{appartment.num}}</td>
+                        <td>{{appartment.floor}}</td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteAppartmentById(appartment._id, $event)">
+                                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-default" (click)="displayDetail(appartment._id)">
+                                <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

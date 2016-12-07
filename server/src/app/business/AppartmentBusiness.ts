@@ -5,7 +5,6 @@
 import AppartmentRepository = require("./../repository/AppartmentRepository");
 import IAppartmentBusiness = require("./interfaces/IAppartmentBusiness");
 import IAppartment = require("./../model/interfaces/IAppartment");
-//import HeroModel = require("./../model/HeroModel");
 
 
 class AppartmentBusiness implements IAppartmentBusiness {
@@ -16,6 +15,9 @@ class AppartmentBusiness implements IAppartmentBusiness {
     }
 
     create (item: IAppartment, callback: (error: any, result: any) => void) {
+        if (item.residentIsOwner) {
+            item.resident = item.owner;
+        }
         this._repository.create(item, callback);
     }
 

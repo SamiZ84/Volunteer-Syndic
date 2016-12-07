@@ -4,7 +4,7 @@
 
 import mongoose = require("mongoose");
 
-interface IOwner extends mongoose.Document {
+interface IPerson extends mongoose.Document {
     firstName: string;
     lastName: string;
     cin: number;
@@ -12,4 +12,4 @@ interface IOwner extends mongoose.Document {
     phone2: number;
 }
 
-export = IOwner;
+export = IPerson;
