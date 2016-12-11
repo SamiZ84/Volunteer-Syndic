@@ -1,5 +1,42 @@
 <my-menu></my-menu>
 
 <div class="container main content">
-    news Detail page
+    <div class="row">
+        <div class="panel" style="padding: 30px 30px 30px 30px;">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object thumbnail" src="http://placehold.it/350x500" alt="...">
+                    </a>
+                </div>
+                <div class="media-body" style="padding: 30px 30px 30px 30px;">
+                    <div class="pull-right">
+                        <a [routerLink]="['/news']" class="btn btn-link"> <i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à la recherche</a>
+                    </div>
+                    <div class="page-header">
+                        <h1>News title</h1>
+                        <!--{{Livre.Nom}}-->
+                        <small>Created by:</small>
+                        <!--{{Livre.Auteur}}-->
+                        <small class="pull-right">yyyy-MM-dd à HH:mm</small>
+                        <!--{{Livre.Auteur}}-->
+                    </div>
+                    <div style="padding: 20px 30px 30px 5px;">
+                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed
+                        odio dui. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                        magna mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Fusce
+                        dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                        risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                    </div>
+                    <hr>
+                    <div class="page-footer">
+                        <small>Last update by:</small>
+                        <small class="pull-right">yyyy-MM-dd à HH:mm</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-background: #f7f3ef;
+background: #f9f9f9;
 }
 body {
   font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
@@ -56,4 +56,8 @@ body {
         padding: 0;
         margin: 0;
     }
+}
+
+.jumbotron {
+    background-color: rgba(226, 226, 226, 0.92);
 }

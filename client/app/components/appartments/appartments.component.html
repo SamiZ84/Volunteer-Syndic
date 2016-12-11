@@ -19,25 +19,23 @@
             <table class="table table-condensed table-hover">
                 <thead>
                     <tr>
-                        <th>Object Id</th>
-                        <th>Bloc</th>
-                        <th>Numero</th>
-                        <th>Floor</th>
-                        <th>Action</th>
+                        <th>Appartment</th>
+                        <th>Owner</th>
+                        <th>Resident</th>
+                        <th style="text-align: right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let appartment of appartments" [class.active]="appartment === selectedAppartment">
-                        <td>{{appartment._id}}</td>
-                        <td>{{appartment.block}}</td>
-                        <td>{{appartment.num}}</td>
-                        <td>{{appartment.floor}}</td>
-                        <td>
-                            <a class="btn btn-danger" (click)="deleteAppartmentById(appartment._id, $event)">
-                                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-                            </a>
+                        <td>{{appartment.block + appartment.num}}</td>
+                        <td>{{appartment.owner.lastName + " " + appartment.owner.firstName}}</td>
+                        <td>{{(appartment.residentIsOwner) ? appartment.ownerFullName() : ((appartment.resident) ? appartment.resident.lastName + " " + appartment.resident.firstName : "")}}</td>
+                        <td style="text-align: right">
                             <a class="btn btn-default" (click)="displayDetail(appartment._id)">
                                 <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-danger" (click)="deleteAppartmentById(appartment._id, $event)">
+                                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
                             </a>
                         </td>
                     </tr>

@@ -2,7 +2,7 @@
  * Created by Moiz.Kachwala on 02-06-2016.
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {AppartmentService} from "../../services/appartment.service";
 import {AppartmentVm} from "../../models/appartmentVm";
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppartmentsComponent implements OnInit {
-    appartments: AppartmentVm[];
+    @Input() appartments: AppartmentVm[];
     error: any;
 
     constructor(

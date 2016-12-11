@@ -16,7 +16,7 @@ import { AppartmentService } from "../../services/appartment.service";
     styleUrls: ['./app/components/appartmentDetail/appartmentDetail.component.css']
 })
 
-export class AppartmentDetailComponent implements OnInit, OnChanges {
+export class AppartmentDetailComponent implements OnInit {
     @Input() model: AppartmentVm;
     isNew = false;
     error: any;
@@ -57,7 +57,7 @@ export class AppartmentDetailComponent implements OnInit, OnChanges {
         window.history.back();
     }
 
-    ngOnChanges() {
-        this.residentIsSameTheOwner = this.model.residentIsOwner ? 'shown' : 'hidden';
+    toggleResident(): void {
+        this.model.residentIsOwner = !this.model.residentIsOwner;
     }
 }

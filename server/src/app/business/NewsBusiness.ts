@@ -2,19 +2,19 @@
  * Created by Moiz.Kachwala on 15-06-2016.
  */
 
-import PersonRepository = require("./../repository/PersonRepository");
-import IPersonBusiness = require("./interfaces/IPersonBusiness");
-import IPerson = require("./../model/interfaces/IPerson");
+import NewsRepository = require("./../repository/NewsRepository");
+import INewsBusiness = require("./interfaces/INewsBusiness");
+import INews = require("./../model/interfaces/INews");
 
 
-class PersonBusiness implements IPersonBusiness {
-    private _repository: PersonRepository;
+class NewsBusiness implements INewsBusiness {
+    private _repository: NewsRepository;
 
     constructor () {
-        this._repository = new PersonRepository();
+        this._repository = new NewsRepository();
     }
 
-    create (item: IPerson, callback: (error: any, result: any) => void) {
+    create (item: INews, callback: (error: any, result: any) => void) {
         this._repository.create(item, callback);
     }
 
@@ -22,7 +22,7 @@ class PersonBusiness implements IPersonBusiness {
         this._repository.retrieve(callback);
     }
 
-    update (_id: string, item: IPerson, callback: (error: any, result: any) => void) {
+    update (_id: string, item: INews, callback: (error: any, result: any) => void) {
         this._repository.findById(_id, (err, res) => {
             if(err)
                 callback(err, res);
@@ -35,10 +35,10 @@ class PersonBusiness implements IPersonBusiness {
         this._repository.delete(_id , callback);
     }
 
-    findById (_id: string, callback: (error: any, result: IPerson) => void) {
+    findById (_id: string, callback: (error: any, result: INews) => void) {
         this._repository.findById(_id, callback);
     }
 }
 
-Object.seal(PersonBusiness);
-export = PersonBusiness;
+Object.seal(NewsBusiness);
+export = NewsBusiness;
