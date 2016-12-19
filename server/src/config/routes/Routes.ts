@@ -8,6 +8,7 @@ import HeroRoutes = require('../routes/HeroRoutes');
 import PersonRoutes = require('../routes/PersonRoutes');
 import AppartmentRoutes = require('../routes/AppartmentRoutes');
 import NewsRoutes = require('../routes/NewsRoutes');
+import AccountRoutes = require('../routes/AccountRoutes');
 
 var app = express();
 
@@ -19,6 +20,7 @@ class Routes {
         app.use("/", new PersonRoutes().routes);
         app.use("/", new AppartmentRoutes().routes);
         app.use("/", new NewsRoutes().routes);
+        app.use("/", new AccountRoutes().routes);
         
         return app;
     }

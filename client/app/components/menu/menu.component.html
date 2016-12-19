@@ -29,8 +29,11 @@
                 <li>
                     <a class="page-scroll" [routerLink]="['/heroes']">Heroes sample</a>
                 </li>
-                <li>
+                <li *ngIf="!LoggedIn">
                     <a class="page-scroll" [routerLink]="['/login']">Login</a>
+                </li>
+                <li *ngIf="LoggedIn">
+                    <a class="page-scroll">Bonjour {{Account.lastName}} {{Account.firstName}}</a>
                 </li>
             </ul>
         </div>

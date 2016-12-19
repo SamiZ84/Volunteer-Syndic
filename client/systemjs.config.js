@@ -1,22 +1,26 @@
 var isPublic = typeof window != "undefined";
 
+//node_modules/@progress/kendo-angular-buttons/dist/npm/main.js
 (function (global) {
   // map tells the System loader where to look for things
   var map = {
     'app': 'app', // 'dist',
-    'clarity-angular': '../node_modules/clarity-angular',
     //'ng-lightning/ng-lightning': 'npm:ng-lightning@1.0.1/bundles/ng-lightning.umd.js',
     'tether': 'https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.js',
     'ng-lightning/ng-lightning': 'https://unpkg.com/ng-lightning@1.0.1/bundles/ng-lightning.umd.js',
     '@angular': (isPublic) ? '@angular' : 'node_modules/@angular',
-    'rxjs': (isPublic) ? 'rxjs' : 'node_modules/rxjs'
+    'rxjs': (isPublic) ? 'rxjs' : 'node_modules/rxjs',
+
+    '@progress': (isPublic) ? '@progress' : 'node_modules/@progress',
+    '@telerik/kendo-intl': '@telerik/kendo-intl'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app': { main: 'main.js', defaultExtension: 'js' },
     'rxjs': { defaultExtension: 'js' },
-    'clarity-angular' : { main: './index.js', defaultExtension: 'js' }
+    '@telerik/kendo-intl': { main: 'dist/npm/main.js', defaultExtension: 'js'}
   };
+
   var ngPackageNames = [
     'common',
     'compiler',
@@ -41,6 +45,21 @@ var isPublic = typeof window != "undefined";
   var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
   // Add package entries for angular packages
   ngPackageNames.forEach(setPackageConfig);
+  
+  /* Kendo config */
+  var kendoPackageNames = [
+    'kendo-data-query',
+    'kendo-angular-intl',
+    'kendo-angular-buttons',
+    'kendo-angular-grid'
+  ]
+  function kendoPackIndex(pkgName) {
+    packages['@progress/' + pkgName] = { main: 'dist/npm/main.js', defaultExtension: 'js' };
+  }
+  kendoPackageNames.forEach(kendoPackIndex);
+  /* Kendo config */
+
+
   var config = {
     map: map,
     packages: packages

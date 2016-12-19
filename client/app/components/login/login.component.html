@@ -1,72 +1,94 @@
 <my-menu></my-menu>
 
-<!--<div class="container main content">
-    <div class="login-wrapper">
-        <form class="login">
-            <label class="title">
-                      Company Name<span class="trademark">&#8482;</span>
-                      Product Name&#174;
-                  </label>
-            <div class="login-group">
-                <div class="auth-source select">
-                    <select id="login-auth-source-1">
-                              <option>Local Users</option>
-                              <option>Administrator</option>
-                          </select>
-                </div>
-                <input class="username" type="text" id="login_username" placeholder="Username">
-                <input class="password" type="password" id="login_password" placeholder="Password">
-                <div class="checkbox">
-                    <input type="checkbox" id="rememberme">
-                    <label for="rememberme">
-                              Remember me
-                          </label>
-                </div>
-                <div class="error active">
-                    Invalid user name or password
-                </div>
-                <button type="submit" class="btn btn-primary">LOG IN</button>
-                <a [routerLink]="['/createaccount']" class="signup">Sign up for an account</a>
-            </div>
-        </form>
-    </div>
-</div>-->
-
 <div class="container main content">
     <div class="col-md-5">
-        <form>
+        <form (ngSubmit)="saveCreatingAccount(accountForm.value.accountDtl)" [formGroup]="accountForm" novalidate>
             <h2 class="form-signin-heading">Create an account</h2>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Login</label>
-                <input type="text" class="form-control" id="login" placeholder="login">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password confirmation</label>
-                <input type="password" class="form-control" id="passwordconfirm" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <fieldset formGroupName="accountDtl">
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.lastName.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.lastName.valid}">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName">
+                    <div *ngIf="!accountForm.controls.accountDtl.controls.lastName.valid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.lastName.errors.minlength 
+                    && accountForm.controls.accountDtl.controls.lastName.touched">
+                        Le lastName doit être au minumum 2 caractéres
+                    </span>
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.lastName.errors.required 
+                    && accountForm.controls.accountDtl.controls.lastName.touched"> 
+                        Le lastName est obligatoire 
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.firstName.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.firstName.valid}">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" formControlName="firstName">
+
+                    <div *ngIf="accountForm.controls.accountDtl.controls.firstName.invalid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.firstName.errors.minlength 
+                    && accountForm.controls.accountDtl.controls.firstName.touched">
+                        Le firstName doit être au minumum 2 caractéres
+                    </span>
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.firstName.errors.required 
+                    && accountForm.controls.accountDtl.controls.firstName.touched"> 
+                        Le firstName est obligatoire 
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.email.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.email.valid}">
+                    <label for="email">email address</label>
+                    <input type="text" class="form-control" formControlName="email">
+                    <div *ngIf="accountForm.controls.accountDtl.controls.email.invalid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.email.errors.pattern 
+                    && accountForm.controls.accountDtl.controls.email.touched"> 
+                    L'email doit être sous la forme xxxx@xxxx.xx 
+                    </span>
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.email.errors.required 
+                    && accountForm.controls.accountDtl.controls.email.touched"> 
+                    L'email est obligatoire 
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.password.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.password.valid}">
+                    <label for="password">password</label>
+                    <input type="password" class="form-control" formControlName="password">
+                    <div *ngIf="accountForm.controls.accountDtl.controls.password.invalid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.password.errors.required 
+                    && accountForm.controls.accountDtl.controls.password.touched"> 
+                    Le password est obligatoire
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.passwordconfirm.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.passwordconfirm.valid}">
+                    <label for="passwordconfirm">password confirmation</label>
+                    <input type="password" class="form-control" formControlName="passwordconfirm">
+                    <div *ngIf="accountForm.controls.accountDtl.controls.passwordconfirm.invalid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.passwordconfirm.errors.required 
+                    && accountForm.controls.accountDtl.controls.passwordconfirm.touched"> 
+                    Le passwordconfirm est obligatoire
+                    </span>
+                    </div>
+                </div>
+            </fieldset>
+            <button type="submit" [disabled]="!accountForm.valid" class="btn btn-primary center-block">Create</button>
         </form>
     </div>
     <div class="col-md-5 col-md-offset-2">
-        <form>
+        <form (ngSubmit)="login(loginForm)" [formGroup]="loginForm">
             <h2 class="form-signin-heading">Please sign in</h2>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Login</label>
-                <input type="text" class="form-control" id="login" placeholder="login">
+            <div class="form-group" [ngClass]="{' has-error': !loginForm.valid, ' has-success': loginForm.valid}">
+                <label for="exampleInputemail1">Login</label>
+                <input type="text" class="form-control" formControlName="login">
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+            <div class="form-group" [ngClass]="{' has-error': !loginForm.valid, ' has-success': loginForm.valid}">
+                <label for="exampleInputPassword1">password</label>
+                <input type="password" class="form-control" formControlName="password">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-default">Submit</button>
         </form>
     </div>
 </div>

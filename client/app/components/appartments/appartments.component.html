@@ -16,31 +16,51 @@
 
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-condensed table-hover">
-                <thead>
-                    <tr>
-                        <th>Appartment</th>
-                        <th>Owner</th>
-                        <th>Resident</th>
-                        <th style="text-align: right">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let appartment of appartments" [class.active]="appartment === selectedAppartment">
-                        <td>{{appartment.block + appartment.num}}</td>
-                        <td>{{appartment.owner.lastName + " " + appartment.owner.firstName}}</td>
-                        <td>{{(appartment.residentIsOwner) ? appartment.ownerFullName() : ((appartment.resident) ? appartment.resident.lastName + " " + appartment.resident.firstName : "")}}</td>
-                        <td style="text-align: right">
-                            <a class="btn btn-default" (click)="displayDetail(appartment._id)">
-                                <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
-                            </a>
-                            <a class="btn btn-danger" (click)="deleteAppartmentById(appartment._id, $event)">
-                                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <kendo-grid
+                [data]="appartments"
+                [pageSize]="pageSize"
+                [skip]="skip"
+                [pageable]="pagerSetting"
+                (pageChange)="onPageChange($event)"
+                >
+                <kendo-grid-column title="Appartment">
+                    <template kendoCellTemplate let-dataItem let-rowIndex="rowIndex">
+                        {{dataItem.block + dataItem.num}}
+                    </template>
+                </kendo-grid-column>
+                <kendo-grid-column field="owner" title="Owner">
+                    <template kendoCellTemplate let-dataItem>
+                        <div *ngIf="dataItem.owner">
+                            {{dataItem.owner?.lastName + " " + dataItem.owner?.firstName}}
+                        </div>
+                    </template>
+                </kendo-grid-column>
+                <kendo-grid-column field="resident" title="Resident">
+                    <template kendoCellTemplate let-dataItem>
+                        <div *ngIf="dataItem.resident">
+                            {{dataItem.resident?.lastName + " " + dataItem.resident?.firstName}}
+                        </div>
+                    </template>
+                </kendo-grid-column>
+                <kendo-grid-column title="Actions">
+                    <template kendoCellTemplate let-dataItem>
+                        <a (click)="displayDetail(dataItem._id)">
+                            <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                        </a>
+                        <a (click)="deleteAppartmentById(dataItem._id, $event)">
+                            <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                        </a>
+                    </template>
+                </kendo-grid-column>
+            </kendo-grid>
         </div>
+        <!--<div class="col-md-12">
+            <ai-grid [data]='appartments' [columns]='appGridColumns'
+            (onRowClicked)="onGridClied($event)"></ai-grid>
+        </div>
+        <div class="col-md-12">
+            <ai-grid [data]='products'
+            (onRowClicked)="onGridClied($event)"></ai-grid>
+        </div>-->
     </div>
 </div>

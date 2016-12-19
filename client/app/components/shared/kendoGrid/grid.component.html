@@ -1,0 +1,13 @@
+<kendo-grid
+      [data]="gridView"
+      [pageSize]="pageSize"
+      [skip]="skip"
+      [pageable]="pagerSetting"
+      [sort]="sort"
+      [sortable]="{ mode: 'multiple' }"
+      [scrollable]="'none'"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)"
+      (click)="onRowClicked()"
+    >
+  </kendo-grid>

@@ -26,6 +26,14 @@ import { FundsComponent }  from './components/funds/funds.component';
 import { HeroService } from './services/hero.service';
 import { PersonService } from './services/person.service';
 import { AppartmentService } from './services/appartment.service';
+import { AccountService } from './services/account.service';
+
+// Import Kendo component
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GridModule } from '@progress/kendo-angular-grid';
+
+// Custom component
+import  {KendoGridComponent } from './components/shared/kendoGrid/grid.component';
 
 @NgModule({
   imports: [
@@ -34,7 +42,9 @@ import { AppartmentService } from './services/appartment.service';
     FormsModule,
     ReactiveFormsModule,
     routing,
-    NglModule.forRoot()
+    NglModule.forRoot(),
+    ButtonsModule,
+    GridModule
   ],
   declarations: [
     AppComponent,
@@ -52,12 +62,16 @@ import { AppartmentService } from './services/appartment.service';
     SuggessionDetailComponent,
     AppartmentsComponent,
     AppartmentDetailComponent,
-    FundsComponent
+    FundsComponent,
+
+    // custom components
+    KendoGridComponent
   ],
   providers: [
     HeroService,
     PersonService,
-    AppartmentService
+    AppartmentService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })
