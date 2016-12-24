@@ -37,7 +37,7 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
     }
 
     find (cond: Object, fields: Object, options: Object, callback: (error: any, result: T[]) => void) {
-        this._model.find(cond, fields, Option, callback);
+        this._model.find(cond, fields, options, callback);
     }
 
     private toObjectId (_id: string) : mongoose.Types.ObjectId {

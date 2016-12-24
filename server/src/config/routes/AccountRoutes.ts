@@ -17,9 +17,9 @@ class AccountRoutes {
 
         router.get("/accounts", controller.retrieve);
         router.post("/accounts", controller.create);
-        router.put("/accounts/:_id", controller.update);
+        router.get("/accounts/login/:login/:pwd", controller.find);
         router.get("/accounts/:_id", controller.findById);
-        router.get("/accounts/login", controller.find);
+        router.put("/accounts/:_id", controller.update);
         router.delete("/accounts/:_id", controller.delete);
 
         return router;

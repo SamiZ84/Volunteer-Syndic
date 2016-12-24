@@ -8,38 +8,40 @@
         </ol>
     </div>
 
-    <div class="row" *ngIf="model">
-        <h4>General Information</h4>
-        <section>
-            <div class="form">
-                <div class="form-group col-md-3 col-xs-6" *ngIf="!isNew">
-                    <label for="id">Id </label>
-                    <input class="form-control" value="{{model._id}}" placeholder="bloc" readonly />
-                </div>
-                <div class="form-group col-md-3 col-xs-6">
-                    <label for="bloc">Bloc</label>
-                    <input class="form-control" [(ngModel)]="model.block" placeholder="bloc" />
-                </div>
-                <div class="form-group col-md-3 col-xs-6">
-                    <label for="num">Num</label>
-                    <input class="form-control" [(ngModel)]="model.num" placeholder="num" />
-                </div>
-                <div class="form-group col-md-3 col-xs-6">
-                    <label for="floor">Floor</label>
-                    <select class="form-control" [(ngModel)]="model.floor" placeholder="choose a floor">
-                            <option>Rdc</option>
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
-                </div>
-            </div>
-        </section>
-    </div>
 
     <br>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3 col-sm-5 col-xs-10">
+            <div class="row" *ngIf="model">
+                <h4>General Information</h4>
+                <section>
+                    <div class="form">
+                        <div class="form-group" *ngIf="!isNew">
+                            <label for="id">Id </label>
+                            <input class="form-control" value="{{model._id}}" placeholder="bloc" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="bloc">Bloc</label>
+                            <input class="form-control" [(ngModel)]="model.block" placeholder="bloc" />
+                        </div>
+                        <div class="form-group">
+                            <label for="num">Num</label>
+                            <input class="form-control" [(ngModel)]="model.num" placeholder="num" />
+                        </div>
+                        <div class="form-group">
+                            <label for="floor">Floor</label>
+                            <select class="form-control" [(ngModel)]="model.floor" placeholder="choose a floor">
+                            <option>Rdc</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
             <div class="row" *ngIf="model.owner">
                 <h4>Owner Informations</h4>
                 <section>
@@ -68,7 +70,7 @@
                 </section>
             </div>
 
-            <label class="col-md-8 control-label" for="radios">The owner is the resident?</label>
+            <label class="control-label" for="radios">The owner is the resident?</label>
             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-primary {{model.residentIsOwner ? 'active' : ''}}" (click)='toggleResident()'>
                     <input type="radio" name="model.residentIsOwner" id="model_residentIsOwner_Yes"> Yes
@@ -77,10 +79,8 @@
                     <input type="radio" name="model.residentIsOwner" id="model_residentIsOwner_No"> No
                 </label>
             </div>
-
         </div>
-
-        <div class="col-md-offset-2 col-md-4">
+        <div class="col-md-3 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-2">
             <div class="row {{model.residentIsOwner ? 'hide' : ''}}">
                 <h4>Resident Informations</h4>
                 <section>

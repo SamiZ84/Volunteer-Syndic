@@ -20,12 +20,12 @@ export class AccountService {
         return Promise.reject(error.message || error);
     }
 
-    getAccountByLogin(login: string, pwd: string) {
-        return this.http.get(this.serviceUrl + '/' + login + '/' + pwd)
-            .toPromise()
-            .then(response => response.json())
-            .catch(this.handleError);
-    }
+    // getAccountByLogin(login: string, pwd: string) {
+    //     return this.http.get(this.serviceUrl + '/' + login + '/' + pwd)
+    //         .toPromise()
+    //         .then(response => response.json())
+    //         .catch(this.handleError);
+    // }
 
     save(vm: AccountVm): Promise<AccountVm> {
         if (vm._id) {
@@ -60,22 +60,22 @@ export class AccountService {
     }
 
     Login(login: string, pwd: string) {
-        //let url = `${this.serviceUrl}/${login}/${pwd}`;
-        //let url = `${this.serviceUrl};${login};${pwd}`;
-        let url = this.serviceUrl+'/login';
-        let params: URLSearchParams = new URLSearchParams();
-        params.set('login', login);
-        params.set('pwd', pwd);
+        let url = `${this.serviceUrl+'/login'}/${login}/${pwd}`;
+        // let url = this.serviceUrl+'/login';
+        // let params: URLSearchParams = new URLSearchParams();
+        // params.set('login', login);
+        // params.set('pwd', pwd);
 
-        return this.http.get(url, {
-            search: params
-        })
+        // return this.http.get(url, {
+        //     search: params
+        // })
+        return this.http.get(url)
             .toPromise()
             .then(response => {
                 var res = response.json();
-                if (res && res.length > 0) {
+                if (res) {
                     this.loggedIn.next(true);
-                    this.account.next(res[0]);
+                    this.account.next(res);
                 }
                 return res;
             })

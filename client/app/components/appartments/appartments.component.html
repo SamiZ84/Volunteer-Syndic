@@ -21,6 +21,9 @@
                 [pageSize]="pageSize"
                 [skip]="skip"
                 [pageable]="pagerSetting"
+                [scrollable]="'none'"
+                [sortable]="{ mode: 'multiple' }"
+                [sort]="sort"
                 (pageChange)="onPageChange($event)"
                 >
                 <kendo-grid-column title="Appartment">
@@ -54,13 +57,5 @@
                 </kendo-grid-column>
             </kendo-grid>
         </div>
-        <!--<div class="col-md-12">
-            <ai-grid [data]='appartments' [columns]='appGridColumns'
-            (onRowClicked)="onGridClied($event)"></ai-grid>
-        </div>
-        <div class="col-md-12">
-            <ai-grid [data]='products'
-            (onRowClicked)="onGridClied($event)"></ai-grid>
-        </div>-->
     </div>
 </div>

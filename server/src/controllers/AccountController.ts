@@ -15,7 +15,7 @@ class AccountController implements IBaseController <AccountBusiness> {
             var model: IAccount = <IAccount>req.body;
             var myBusiness = new AccountBusiness();
             myBusiness.create(model, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"error in create fct": error});
                 else res.send({"success": "success"});
             });
         }
@@ -30,7 +30,7 @@ class AccountController implements IBaseController <AccountBusiness> {
             var _id: string = req.params._id;
             var myBusiness = new AccountBusiness();
             myBusiness.update(_id, model, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"error in update fct": error});
                 else res.send({"success": "success"});
             });
         }
@@ -44,7 +44,7 @@ class AccountController implements IBaseController <AccountBusiness> {
             var _id: string = req.params._id;
             var myBusiness = new AccountBusiness();
             myBusiness.delete(_id, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"error in delete fct": error});
                 else res.send({"success": "success"});
             });
         }
@@ -57,7 +57,7 @@ class AccountController implements IBaseController <AccountBusiness> {
         try {
             var myBusiness = new AccountBusiness();
             myBusiness.retrieve((error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"error in retrieve fct": error});
                 else res.send(result);
             });
         }
@@ -71,7 +71,7 @@ class AccountController implements IBaseController <AccountBusiness> {
             var _id: string = req.params._id;
             var myBusiness = new AccountBusiness();
             myBusiness.findById(_id, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"error in findById fct": error});
                 else res.send(result);
             });
         }
@@ -85,10 +85,10 @@ class AccountController implements IBaseController <AccountBusiness> {
             var cond: Object = {'email': req.params.login, 'password': req.params.pwd};
             var myBusiness = new AccountBusiness();
             myBusiness.find(cond, (error, result) => {
-                if(error) res.send({"error": "error"});
+                if(error) res.send({"error": error});
                 else {
                     if (result.length == 0)
-                         res.send({"error": "account not found"});
+                         res.send({"error in find fct": "account not found"});
                     else
                         res.send(result[0]);
                 }

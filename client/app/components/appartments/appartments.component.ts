@@ -2,7 +2,7 @@
  * Created by Moiz.Kachwala on 02-06-2016.
  */
 
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppartmentService } from "../../services/appartment.service";
 import { AppartmentVm } from "../../models/appartmentVm";
 import { Router } from '@angular/router';
@@ -16,10 +16,9 @@ import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
     styleUrls: ['./app/components/appartments/appartments.component.css']
 })
 
-export class AppartmentsComponent implements OnInit, OnChanges {
-    @Input() appartments: AppartmentVm[];
+export class AppartmentsComponent {
+    private appartments: AppartmentVm[];
     error: any;
-    private products: any[];
 
     private gridView: GridDataResult;
     private pageSize: number = 5;
@@ -36,23 +35,31 @@ export class AppartmentsComponent implements OnInit, OnChanges {
 
     constructor(
         private router: Router,
-        private myService: AppartmentService) { }
-
-    ngOnInit() {
+        private myService: AppartmentService) {
         this.getAppartments();
-
-        this.products = Array(100).fill({}).map((x, idx) => ({
-            "ProductID": idx,
-            "ProductName": "Product" + idx,
-            "Discontinued": idx % 2 === 0
-        }));
+        //this.refreshData();
     }
-    ngOnChanges() {
+
+    getAppartments() {
+        this.myService.getAppartments().then(app => {
+            this.appartments = app;
+            this.refreshData();
+        });
+    }
+
+    protected onPageChange({ skip, take }: PageChangeEvent): void {
+        this.skip = skip;
+        this.pageSize = take;
         this.refreshData();
     }
-    getAppartments() {
-        this.myService.getAppartments().then(app => this.appartments = app);
+
+    private refreshData(): void {
+        this.gridView = {
+            data: (this.appartments != undefined) ? (orderBy(this.appartments, this.sort).slice(this.skip, this.skip + this.pageSize)) : [],
+            total: (this.appartments != undefined) ? this.appartments.length : 0
+        };
     }
+
     addAppartment() {
         this.router.navigate(['/appartment', 'new']);
     }
@@ -69,18 +76,5 @@ export class AppartmentsComponent implements OnInit, OnChanges {
     }
     displayDetail(appartmentId: string) {
         this.router.navigate(['/appartment', appartmentId]);
-    }
-    
-    protected onPageChange({ skip, take }: PageChangeEvent): void {
-        this.skip = skip;
-        this.pageSize = take;
-        this.refreshData();
-    }
-
-    private refreshData(): void {
-        this.gridView = {
-            data: (this.appartments != undefined) ? (orderBy(this.appartments, this.sort).slice(this.skip, this.skip + this.pageSize)) : [],
-            total: (this.appartments != undefined) ? this.appartments.length : 0
-        };
     }
 }
