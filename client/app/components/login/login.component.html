@@ -36,6 +36,33 @@
                     </span>
                     </div>
                 </div>
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.appartment.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.appartment.valid}">
+                    <label for="appartment">Appartment</label>
+                    <select class="form-control" formControlName="appartment">
+                        <option *ngFor="let app of appartments" [ngValue]="app">
+                            {{app.block + app.num}}
+                        </option>
+                    </select>
+                    <div *ngIf="accountForm.controls.accountDtl.controls.appartment.invalid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.appartment.errors.required 
+                    && accountForm.controls.accountDtl.controls.appartment.touched"> 
+                        Le appartment est obligatoire 
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.isSyndic.valid, 
+                'has-success': accountForm.controls.accountDtl.controls.isSyndic.valid}">
+                    <label for="email">Syndic</label>
+                    <input type="radio" [value]="true" formControlName="isSyndic" [checked]="isSyndic">
+                    <input type="radio" [value]="false" formControlName="isSyndic" [checked]="!isSyndic">
+                    <div *ngIf="accountForm.controls.accountDtl.controls.isSyndic.invalid">
+                        <span class="text-danger" *ngIf="accountForm.controls.accountDtl.controls.isSyndic.errors.required 
+                    && accountForm.controls.accountDtl.controls.isSyndic.touched"> 
+                    is Syndic est obligatoire 
+                    </span>
+                    </div>
+                </div>
                 <div class="form-group" [ngClass]="{'has-error': !accountForm.controls.accountDtl.controls.email.valid, 
                 'has-success': accountForm.controls.accountDtl.controls.email.valid}">
                     <label for="email">email address</label>

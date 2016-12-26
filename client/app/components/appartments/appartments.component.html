@@ -1,32 +1,30 @@
 <my-menu></my-menu>
 
 <div class="container main content">
-    <h2>Appartments</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="error" *ngIf="error">{{error}}</div>
-            <div class="pull-right">
-                <button class="btn btn-success" (click)="addAppartment()">
+    <div class="panel panel-default">
+        <div class="panel-heading">Appartments</div>
+        <div class="panel-body">
+
+            <div class="col-md-12">
+                <div class="error" *ngIf="error">{{error}}</div>
+                <div class="pull-left">
+                    Filter: <input type="text" [(ngModel)]="filter" (ngModelChange)="change()">
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-success" (click)="addAppartment()">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     Add New Appartment
                 </button>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <kendo-grid
-                [data]="appartments"
-                [pageSize]="pageSize"
-                [skip]="skip"
-                [pageable]="pagerSetting"
-                [scrollable]="'none'"
-                [sortable]="{ mode: 'multiple' }"
-                [sort]="sort"
-                (pageChange)="onPageChange($event)"
-                >
-                <kendo-grid-column title="Appartment">
+            <kendo-grid [data]="gridView" [pageSize]="pageSize" [skip]="skip" [pageable]="pagerSetting" [scrollable]="'none'" [sortable]="{ mode: 'multiple' }"
+                [sort]="sort" (pageChange)="onPageChange($event)" (sortChange)="sortChange($event)">
+                <kendo-grid-column field="block" title="Appartment">
                     <template kendoCellTemplate let-dataItem let-rowIndex="rowIndex">
                         {{dataItem.block + dataItem.num}}
                     </template>

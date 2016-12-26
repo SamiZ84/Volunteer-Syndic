@@ -23,6 +23,7 @@ import { AppartmentsComponent }  from './components/appartments/appartments.comp
 import { AppartmentDetailComponent }  from './components/appartmentDetail/appartmentDetail.component';
 import { FundsComponent }  from './components/funds/funds.component';
 
+import { AuthGuard } from './guards/authGuard';
 import { HeroService } from './services/hero.service';
 import { PersonService } from './services/person.service';
 import { AppartmentService } from './services/appartment.service';
@@ -31,6 +32,8 @@ import { AccountService } from './services/account.service';
 // Import Kendo component
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 // Custom component
 import  {KendoGridComponent } from './components/shared/kendoGrid/grid.component';
@@ -44,7 +47,9 @@ import  {KendoGridComponent } from './components/shared/kendoGrid/grid.component
     routing,
     NglModule.forRoot(),
     ButtonsModule,
-    GridModule
+    GridModule,
+    InputsModule,
+    DropDownsModule
   ],
   declarations: [
     AppComponent,
@@ -68,6 +73,7 @@ import  {KendoGridComponent } from './components/shared/kendoGrid/grid.component
     KendoGridComponent
   ],
   providers: [
+    AuthGuard,
     HeroService,
     PersonService,
     AppartmentService,

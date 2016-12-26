@@ -1,3 +1,5 @@
+import {AppartmentVm} from "../models/appartmentVm";
+
 export class AccountVm {
     _id: string;
     lastName: string;
@@ -5,4 +7,6 @@ export class AccountVm {
     email: string;
     password: string;
     passwordconfirm: string;
+    appartment: AppartmentVm;
+    isSyndic: boolean;
 }

@@ -14,26 +14,27 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li *ngIf="LoggedIn">
                     <a class="page-scroll" [routerLink]="['/news']">Actualities</a>
                 </li>
-                <li>
+                <li *ngIf="LoggedIn">
                     <a class="page-scroll" [routerLink]="['/suggessions']">Suggessions</a>
                 </li>
-                <li>
+                <li *ngIf="LoggedIn && Account.isSyndic">
                     <a class="page-scroll" [routerLink]="['/appartments']">Resident management</a>
                 </li>
-                <li>
+                <li *ngIf="LoggedIn && Account.isSyndic">
                     <a class="page-scroll" [routerLink]="['/funds']">Funds management</a>
                 </li>
-                <li>
+                <!--<li>
                     <a class="page-scroll" [routerLink]="['/heroes']">Heroes sample</a>
-                </li>
+                </li>-->
                 <li *ngIf="!LoggedIn">
                     <a class="page-scroll" [routerLink]="['/login']">Login</a>
                 </li>
-                <li *ngIf="LoggedIn">
-                    <a class="page-scroll">Bonjour {{Account.lastName}} {{Account.firstName}}</a>
+                <li *ngIf="LoggedIn" class="disabled">
+                    <a class="page-scroll">Bonjour {{Account.lastName}} {{Account.firstName}}
+                        &nbsp;&nbsp;<i (click)="loginOut($event)" class="glyphicon glyphicon-off" style="cursor: pointer;"></i></a>
                 </li>
             </ul>
         </div>

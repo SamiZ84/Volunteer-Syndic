@@ -85,10 +85,11 @@ class AccountController implements IBaseController <AccountBusiness> {
             var cond: Object = {'email': req.params.login, 'password': req.params.pwd};
             var myBusiness = new AccountBusiness();
             myBusiness.find(cond, (error, result) => {
-                if(error) res.send({"error": error});
+                if(error) 
+                    res.send({"error": error});
                 else {
                     if (result.length == 0)
-                         res.send({"error in find fct": "account not found"});
+                         res.send({"error": "account not found"});
                     else
                         res.send(result[0]);
                 }

@@ -11,7 +11,7 @@ export class AppartmentVm {
     resident: PersonVm = new PersonVm();
     residentIsOwner: boolean = true;
 
-    toString = function() {
+    public toString():string {
         var title = "New appartment";
         if (this.block) {
             title = this.block;
@@ -22,11 +22,11 @@ export class AppartmentVm {
         return title;
     }
 
-    ownerFullName = function() {
+    public ownerFullName():string {
         return (this.owner) ? this.owner.lastName + " " + this.owner.firstName : "";
     }
 
-    residentFullName = function() {
+    public residentFullName():string {
         return (this.residentIsOwner) ? this.ownerFullName() : ((this.resident) ? this.resident.lastName + " " + this.resident.firstName : "");
     }
 }

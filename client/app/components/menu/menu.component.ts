@@ -17,8 +17,13 @@ export class MenuComponent {
     public LoggedIn: boolean;
     public Account: AccountVm;
 
-    constructor(private service: AccountService) {
-        this.service.loggedIn.subscribe(p=> this.LoggedIn = p );
-        this.service.account.subscribe(p=> this.Account = p );
+    constructor(private router: Router, private service: AccountService) {
+        this.Account = JSON.parse(sessionStorage.getItem('currentUser'));
+        this.LoggedIn = (this.Account != null);
+    }
+
+    loginOut() {
+        sessionStorage.removeItem('currentUser');
+        this.router.navigate(['/']);
     }
 }

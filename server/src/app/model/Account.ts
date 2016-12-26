@@ -3,6 +3,7 @@
  */
 
 import IAccount = require('./interfaces/IAccount');
+import IAppartment = require('./interfaces/IAppartment');
 
 class Account {
 
@@ -20,9 +21,17 @@ class Account {
         return this._model.firstName;
     }
 
+    get isSyndic (): boolean {
+        return this._model.isSyndic;
+    }
+
+    get appartment (): IAppartment {
+        return this._model.appartment;
+    }
+
     get email (): string {
         return this._model.email;
-    }
+    }   
     
     get password (): string {
         return this._model.password;

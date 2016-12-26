@@ -12,13 +12,14 @@ var isPublic = typeof window != "undefined";
     'rxjs': (isPublic) ? 'rxjs' : 'node_modules/rxjs',
 
     '@progress': (isPublic) ? '@progress' : 'node_modules/@progress',
-    '@telerik/kendo-intl': '@telerik/kendo-intl'
+    '@telerik': (isPublic) ? '@telerik' : 'node_modules/@telerik'
+    //'@telerik/kendo-intl': '@telerik/kendo-intl'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app': { main: 'main.js', defaultExtension: 'js' },
-    'rxjs': { defaultExtension: 'js' },
-    '@telerik/kendo-intl': { main: 'dist/npm/main.js', defaultExtension: 'js'}
+    'rxjs': { defaultExtension: 'js' }
+    //'@telerik/kendo-intl': { main: 'dist/npm/main.js', defaultExtension: 'js'}
   };
 
   var ngPackageNames = [
@@ -51,7 +52,11 @@ var isPublic = typeof window != "undefined";
     'kendo-data-query',
     'kendo-angular-intl',
     'kendo-angular-buttons',
-    'kendo-angular-grid'
+    'kendo-angular-grid',
+    'kendo-angular-inputs',
+    'kendo-angular-dropdowns',
+    'kendo-popup-common',
+    'kendo-angular-popup'
   ]
   function kendoPackIndex(pkgName) {
     packages['@progress/' + pkgName] = { main: 'dist/npm/main.js', defaultExtension: 'js' };
@@ -59,6 +64,18 @@ var isPublic = typeof window != "undefined";
   kendoPackageNames.forEach(kendoPackIndex);
   /* Kendo config */
 
+ /* teleric config */
+  var telericPackageNames = [
+    'kendo-intl',
+    'kendo-draggable',
+    'kendo-inputs-common',
+    'kendo-dropdowns-common'
+  ]
+  function telericPackIndex(pkgName) {
+    packages['@telerik/' + pkgName] = { main: 'dist/npm/main.js', defaultExtension: 'js' };
+  }
+  telericPackageNames.forEach(telericPackIndex);
+  /* teleric config */
 
   var config = {
     map: map,

@@ -9,10 +9,16 @@
 
 .navbar-default .navbar-nav>li>a {
     color: #e0d8d8;
+    cursor: pointer;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
     color: darkgrey;
+}
+
+.navbar-default .navbar-nav>li.disabled>a:hover {
+    color: #e0d8d8;
+    cursor: default;
 }
 
 .navbar-default .navbar-brand {

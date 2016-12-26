@@ -5,6 +5,8 @@
 import DataAccess = require('../DataAccess');
 import IAccount = require("./../../model/interfaces/IAccount");
 
+import AppartmentSchema = require("./AppartmentSchema");
+
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
@@ -18,6 +20,14 @@ class AccountSchema {
             },
             lastName: {
                 type: String,
+                required: true
+            },
+            isSyndic:{
+                type: Boolean,
+                required: true
+            },
+            appartment:{
+                type: AppartmentSchema.schema,
                 required: true
             },
             email: {

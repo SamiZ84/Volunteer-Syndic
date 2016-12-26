@@ -20,13 +20,6 @@ export class AccountService {
         return Promise.reject(error.message || error);
     }
 
-    // getAccountByLogin(login: string, pwd: string) {
-    //     return this.http.get(this.serviceUrl + '/' + login + '/' + pwd)
-    //         .toPromise()
-    //         .then(response => response.json())
-    //         .catch(this.handleError);
-    // }
-
     save(vm: AccountVm): Promise<AccountVm> {
         if (vm._id) {
             return this.put(vm);
@@ -60,24 +53,20 @@ export class AccountService {
     }
 
     Login(login: string, pwd: string) {
-        let url = `${this.serviceUrl+'/login'}/${login}/${pwd}`;
-        // let url = this.serviceUrl+'/login';
-        // let params: URLSearchParams = new URLSearchParams();
-        // params.set('login', login);
-        // params.set('pwd', pwd);
-
-        // return this.http.get(url, {
-        //     search: params
-        // })
+        let url = `${this.serviceUrl + '/login'}/${login}/${pwd}`;
         return this.http.get(url)
             .toPromise()
             .then(response => {
                 var res = response.json();
-                if (res) {
-                    this.loggedIn.next(true);
-                    this.account.next(res);
+                if (!res["error"]) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    sessionStorage.setItem('currentUser', JSON.stringify(res));
+                    return true;
                 }
-                return res;
+                else {
+                    this.handleError("Check your login and password \n" + res["error"]);
+                    return false;
+                }
             })
             .catch(this.handleError);
     }
