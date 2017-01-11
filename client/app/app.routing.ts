@@ -15,7 +15,8 @@ import { SuggessionDetailComponent }  from './components/suggessionDetail/sugges
 import { AppartmentsComponent }  from './components/appartments/appartments.component';
 import { AppartmentDetailComponent }  from './components/appartmentDetail/appartmentDetail.component';
 import { FundsComponent }  from './components/funds/funds.component';
-
+import { ChargesComponent }  from './components/charges/charges.component';
+import { IncomesComponent }  from './components/incomes/incomes.component';
 
 const appRoutes: Routes = [
   { path: '', component: AcceuilComponent },
@@ -27,9 +28,10 @@ const appRoutes: Routes = [
   { path: 'appartments', component: AppartmentsComponent, canActivate: [AuthGuard]  },
   { path: 'appartment/:id', component: AppartmentDetailComponent, canActivate: [AuthGuard]  },
   { path: 'funds', component: FundsComponent, canActivate: [AuthGuard]  },
+  { path: 'charges', component: ChargesComponent, canActivate: [AuthGuard]  },
+  { path: 'incomes', component: IncomesComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent  },
   { path: 'createaccount', component: CreateAccountComponent  },
-
 
   { path: 'dashboard', component: DashboardComponent  },
   { path: 'detail/:id', component: HeroDetailComponent  },

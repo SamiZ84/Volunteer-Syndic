@@ -1,0 +1,120 @@
+<my-menu></my-menu>
+
+<div class="container main content">
+    <div class="col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar">
+        <div class="list-group">
+            <a [routerLink]="['/funds']" class="list-group-item">Funds</a>
+            <a [routerLink]="['/incomes']" class="list-group-item">Incomes</a>
+            <a [routerLink]="['/charges']" class="list-group-item active">Charges</a>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-9 col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">Charges</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="pull-left">
+                        Filter: <input type="text" [(ngModel)]="filter" (ngModelChange)="change()">
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-success" (click)="addCharge()">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            Add New Charge
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <kendo-grid [data]="gridView" [pageSize]="pageSize" [skip]="skip" [pageable]="pagerSetting" [scrollable]="'none'" [sortable]="{ mode: 'multiple' }"
+                    [sort]="sort" (pageChange)="onPageChange($event)" (sortChange)="sortChange($event)">
+                    <kendo-grid-column field="type">
+                        <template kendoCellTemplate let-dataItem>
+                            {{dataItem.type}}
+                        </template>
+                    </kendo-grid-column>
+                    <kendo-grid-column field="subtype" title="Sub type"></kendo-grid-column>
+                    <kendo-grid-column field="title" title="Title"></kendo-grid-column>
+                    <kendo-grid-column field="effectiveDate" title="Effective Date"></kendo-grid-column>
+                    <kendo-grid-column field="price" title="Price"></kendo-grid-column>
+                    <kendo-grid-column title="Actions">
+                        <template kendoCellTemplate let-dataItem>
+                            <a (click)="displayDetail(dataItem._id)">
+                                <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a (click)="deleteById(dataItem._id, $event)">
+                                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                            </a>
+                        </template>
+                    </kendo-grid-column>
+                </kendo-grid>
+            </div>
+        </div>
+        <br>
+        <div class="panel panel-default" *ngIf="tmpCharge != null">
+            <div class="panel-heading">Detail charge {{tmpCharge.title}}</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="error" *ngIf="error">{{error}}</div>
+                    <div *ngIf="tmpCharge" class="form-horizontal">
+                        <!--<form ngNoForm class="form-horizontal">-->
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Type: </label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" [(ngModel)]="tmpCharge.type">
+                                    <option *ngFor="let key of tmpCharge.typeKeys" [value]="key">{{key}}</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Title: </label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" [(ngModel)]="tmpCharge.title" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Effective Date: </label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" [(ngModel)]="tmpCharge.effectiveDate" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Quantity: </label>
+                                <div class="col-sm-8 numeric">
+                                    <input class="form-control" [(ngModel)]="tmpCharge.quantity" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">UnitPrice: </label>
+                                <div class="col-sm-8 numeric">
+                                    <input class="form-control" [(ngModel)]="tmpCharge.unitPrice" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Price: </label>
+                                <div class="col-sm-8 numeric">
+                                    <input class="form-control" [(ngModel)]="tmpCharge.price" [value]="tmpCharge.quantity * tmpCharge.unitPrice" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Description: </label>
+                                <div class="col-sm-8 numeric">
+                                    <textarea class="form-control" [(ngModel)]="tmpCharge.description" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="pull-right">
+                                    <button (click)="cancel()" class="btn btn-default">Cancel</button>
+                                    <button (click)="saveDetail()" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        <!--</form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

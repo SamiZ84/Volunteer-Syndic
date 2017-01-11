@@ -22,6 +22,8 @@ import { SuggessionDetailComponent }  from './components/suggessionDetail/sugges
 import { AppartmentsComponent }  from './components/appartments/appartments.component';
 import { AppartmentDetailComponent }  from './components/appartmentDetail/appartmentDetail.component';
 import { FundsComponent }  from './components/funds/funds.component';
+import { ChargesComponent }  from './components/charges/charges.component';
+import { IncomesComponent }  from './components/incomes/incomes.component';
 
 import { AuthGuard } from './guards/authGuard';
 import { HeroService } from './services/hero.service';
@@ -68,6 +70,8 @@ import  {KendoGridComponent } from './components/shared/kendoGrid/grid.component
     AppartmentsComponent,
     AppartmentDetailComponent,
     FundsComponent,
+    ChargesComponent,
+    IncomesComponent,
 
     // custom components
     KendoGridComponent
