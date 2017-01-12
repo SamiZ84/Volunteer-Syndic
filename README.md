@@ -1,6 +1,12 @@
-## Volunteer-Syndic
-Volunteer-Syndic est une solution facile pour la gestion de copropriétés gérées en syndic bénévole
-Application crée à partir du sid Angular2 MEAN
+# Volunteer-Syndic
+Volunteer-Syndic est une solution facile pour la gestion de copropriétés gérées en syndic bénévole.
+Application crée à partir du sid Angular2 MEAN:
+
+Durant cet exercice, j'ai essayé les nouvelles technologies Angular 2, NodeJS, ExpressJS, Mongoose et MongoDB.
+J'ai essayé de suivre une certaine logique fonctionnelle.
+
+Coté composant graphique, j'ai intégré la bibliothèque Kendo UI avec Angular2 avec systemjs
+http://www.telerik.com/kendo-angular-ui/
 
 ## [ Angular2 Updated to 2.1.0 ]
 # Angular2 MEAN - QuickStart application with ExpressJS, MongoDB, Gulp and Typescript (Repository Pattern)
@@ -44,22 +50,29 @@ angular2-MEAN
     ├── client
     │    ├── app
     │    │    ├── Components
-    │    │    │    ├── dashboard
-    │    │    │    │    ├── dashboard.component.css
-    │    │    │    │    ├── dashboard.component.html
-    │    │    │    │    ├── dashboard.component.ts
-    │    │    │    ├── heroDetail
-    │    │    │    │    ├── hero-detail.component.css
-    │    │    │    │    ├── hero-detail.component.html
-    │    │    │    │    ├── hero-detail.component.ts    
-    │    │    │    ├── heroes
-    │    │    │    │    ├── heroes.component.css
-    │    │    │    │    ├── heroes.component.html
-    │    │    │    │    ├── heroes.component.ts    
+    │    │    │    ├── acceuil
+    │    │    │    │    ├── acceuil.component.css
+    │    │    │    │    ├── acceuil.component.html
+    │    │    │    │    ├── acceuil.component.ts
+    │    │    │    ├── appartmentDetail
+    │    │    │    │    ├── appartmentDetail.component.css
+    │    │    │    │    ├── appartmentDetail.component.html
+    │    │    │    │    ├──appartmentDetail.component.ts    
+    │    │    │    ├── appartments
+    │    │    │    │    ├── appartments.component.css
+    │    │    │    │    ├── appartments.component.html
+    │    │    │    │    ├── appartments.component.ts    
+    │    │    │    ├── ...    
+    │    │    ├── guards
+    │    │    │    ├── authGuard.ts
     │    │    ├── models
-    │    │    │    ├── hero.ts
+    │    │    │    ├── appartmentVm.ts
+    │    │    │    ├── accountVm.ts
+    │    │    │    ├── ...
     │    │    ├── services
-    │    │    │    ├── hero.service.ts            <= Hero Service for fetching api
+    │    │    │    ├── account.service.ts               <= Account Service for fetching api
+    │    │    │    ├── appartment.service.ts            <= appartment Service for fetching api
+    │    │    │    ├── ...
     │    │    ├── app.component.css
     │    │    ├── app.component.ts
     │    │    ├── app.html
@@ -79,35 +92,52 @@ angular2-MEAN
     │    │    │    │    │    ├── Read.ts           <= common Read method
     │    │    │    │    │    ├── Write.ts          <= common Write method
     │    │    │    │    ├── interfaces
-    │    │    │    │    │    ├── HeroBusiness.ts
-    │    │    │    │    ├── BaseBusiness.ts
-    │    │    │    │    ├── HeroBusiness.ts
+    │    │    │    │    │    ├── IAccountBusiness.ts
+    │    │    │    │    │    ├── IAppartmentBusiness.ts
+    │    │    │    │    │    ├── ...
+    │    │    │    │    ├── AccountBusiness.ts
+    │    │    │    │    ├── AppartmentBusiness.ts
+    │    │    │    │    ├── ...
     │    │    │    ├── dataAccess
     │    │    │    │    ├── schemas
-    │    │    │    │    │    ├── HeroSchema.ts    <= Hero Schema for MongoDB
+    │    │    │    │    │    ├── AccountSchema.ts       <= Account Schema for MongoDB
+    │    │    │    │    │    ├── AppartmentSchema.ts    <= Appartment Schema for MongoDB
+    │    │    │    │    │    ├── ...
     │    │    │    │    ├── DataAccess.ts         <= Connection with MongoDB
     │    │    │    ├── model
     │    │    │    │    ├── interfaces
-    │    │    │    │    │    ├── HeroModel.ts
-    │    │    │    │    ├── HeroModel.ts
+    │    │    │    │    │    ├── IAccount.ts
+    │    │    │    │    │    ├── IAppartment.ts
+    │    │    │    │    │    ├── ...
+    │    │    │    │    ├── Account.ts
+    │    │    │    │    ├── Appartment.ts
+    │    │    │    │    ├── ...
     │    │    │    ├── repository
     │    │    │    │    ├── interfaces
     │    │    │    │    │    ├── Read.ts
     │    │    │    │    │    ├── Write.ts
+    │    │    │    │    ├── AccountRepository.ts
+    │    │    │    │    ├── AppartmentRepository.ts
     │    │    │    │    ├── BaseRepository.ts
     │    │    │    │    ├── HeroRepository.ts
+    │    │    │    │    ├── ...
     │    │    ├── config
     │    │    │    ├── constants
     │    │    │    │    ├── constants.ts         <= Constants - mongodb connection string.
     │    │    │    ├── routes
-    │    │    │    │    ├── HeroRoutes.ts        <= Hero API Routes like get,post,put,delete
-    │    │    │    │    ├── Routes.ts            <= fetching all appliction routes here
+    │    │    │    │    ├── AccountRoutes.ts            <= Account API Routes like get,post,put,delete
+    │    │    │    │    ├── AppartmentRoutes.ts         <= Appartment API Routes like get,post,put,delete
+    │    │    │    │    ├── Routes.ts                   <= fetching all appliction routes here
+    │    │    │    │    ├── ...
     │    │    ├── controller
     │    │    │    ├── interfaces
     │    │    │    │    ├── ReadController.ts
     │    │    │    │    ├── WriteController.ts
+    │    │    │    ├── AccountController.ts
+    │    │    │    ├── AppartmentController.ts
     │    │    │    ├── BaseController.ts         <= Base Repository controller
     │    │    │    ├── HeroController.ts
+    │    │    │    ├── ...
     │    │    ├── server.ts
     │    ├── typings
     │    ├── tsconfig.json
@@ -137,11 +167,11 @@ angular2-MEAN
 ## Api Document (from MongoDB)
 
 ```
-1. getAll    http://localhost:3000/api/heroes             <= get all heroes
-1. getById   http://localhost:3000/api/heroes/:id         <= get hero by Id
-2. post      http://localhost:3000/api/heroes             <= create hero
-2. put       http://localhost:3000/api/heroes/:id         <= update hero
-2. delete    http://localhost:3000/api/heroes/:id         <= delete hero
+1. getAll    http://localhost:3000/api/appartments             <= get all appartments
+1. getById   http://localhost:3000/api/appartments/:id         <= get appartment by Id
+2. post      http://localhost:3000/api/appartments             <= create appartment
+2. put       http://localhost:3000/api/appartments/:id         <= update appartment
+2. delete    http://localhost:3000/api/appartments/:id         <= delete appartment
 
 ```
 ## Dependencies
